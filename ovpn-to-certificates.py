@@ -15,7 +15,7 @@
 #
 # you should edit the OVPN path here:
 
-path = 'C:\Program Files\OpenVPN\config\\'
+path = 'D:\Python\Projects\ovpn-to-certificates-master\\'
 
 
 
@@ -33,13 +33,13 @@ def fileFilter(path, fileExtension):
 
 		if fileExtension in filename:
 		
-			print filename.strip()
+			print(filename.strip())
 			
 			count = count + 1
 			
 			selectedFiles.append(path+filename)
 			
-	print "\nThere are ", count, fileExtension + " files\n\n"
+	print("\nThere are ", count, fileExtension + " files\n\n")
 
 	return selectedFiles
 	
@@ -71,7 +71,7 @@ def fileCreate(strNamaFile, strData):
 		f.writelines(str(strData))
 		f.close()
 		
-	print "file created: " + strNamaFile + "\n"
+	print("file created: " + strNamaFile + "\n")
 	
 	
 	
@@ -79,7 +79,7 @@ def readTextFile(strNamaFile):
 
 	f = open(strNamaFile, "r")
 	
-	print "file being read: " + strNamaFile + "\n"
+	print("file being read: " + strNamaFile + "\n")
 	
 	return f.read()
 	
@@ -93,13 +93,13 @@ def ovpnToCertificate(strNamaFile):
 	
 	tagFile = {'ca':'ca.crt', 'cert':'client.crt', 'key':'client.key'}
 	
-	for tag, file in tagFile.iteritems():
+	for tag, file in tagFile.items():
 	
 		strData = strData + grabBetweenTag(tag, fileContents)
 	
 		strNamaFile = strNamaFile.replace(".ovpn","")
 		
-		print tag, strNamaFile + "-" + file
+		print(tag, strNamaFile + "-" + file)
 		
 		fileCreate(strNamaFile + "-" + file, strData)
 	
@@ -107,8 +107,7 @@ def ovpnToCertificate(strNamaFile):
 	
 def main():
 
-  fileExtension = ".ovpn"
-	
+	fileExtension = '.ovpn'
 	selectedFiles = fileFilter(path, fileExtension)
 
 	for files in selectedFiles:
